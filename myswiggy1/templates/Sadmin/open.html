@@ -1,0 +1,55 @@
+{% include 'Sadmin/mainmenu.html' %}
+<form action="{% url 'save_state' %}" method="post">
+    {% csrf_token %}
+
+<table align="center" border="2">
+    <tr>
+        <th colspan="2" style="text-align: center;">
+            State Operations
+        </th>
+    </tr>
+    <tr>
+        <td>
+            {{ sf }}
+        </td>
+    </tr>
+    <tr>
+        <th colspan="2" style="text-align: center">
+            <button type="submit">Save</button>
+        </th>
+    </tr>
+    {% for x in messages %}
+    <tr>
+        <td>
+            {{ x }}
+        </td>
+    </tr>
+    {% endfor %}
+
+
+</table>
+</form>
+<table align="center" border="2">
+    <tr><td>NO</td>
+        <td>State Name</td>
+        <td>Update</td>
+        <td>Delete</td>
+    </tr>
+    {% for x in st %}
+    <tr>
+        <td>{{ x.state_no }}</td>
+        <td>{{ x.state_name }}</td>
+        <td>
+            <a href="{% url 'state_update' %}?up={{ x.state_name }}"> Update</a></td>
+        <td>
+            <a href="{% url 'state_delete' %}?up={{ x.state_name }}"> Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% if error %}
+    {{ error }}
+
+{% endif %}
+{% for x in messages %}
+    {{ x }}
+{% endfor %}

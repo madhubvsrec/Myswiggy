@@ -1,0 +1,7 @@
+{% load static %}
+{% if request.session.status %}
+{% include 'Sadmin/mainmenu.html' %}
+    <img src="{% static 'images/adminlogin.jpg' %}">
+    {% else %}
+    <h3>please do login</h3>
+{% endif %}

@@ -100,4 +100,39 @@ def update_city(request):
 def city_delete(request):
     c_up = request.GET.get('up')
     city = CityModel.objects.get(city_name=c_up).delete()
-    return redirect('open_state')
+    return redirect('open_city')
+
+
+def open_area(request):
+    return render(request,'Sadmin/areaopen.html',{"area":AreaForm(),"all":AreaModel.objects.all()})
+
+
+def area_city(request):
+    sf = AreaForm(request.POST)
+    if sf.is_valid():
+        sf.save()
+        return redirect('open_area')
+    else:
+        messages.error(request, 'area is not saved')
+        return render(request, 'Sadmin/areaopen.html', {"error": sf})
+
+
+def area_update(request):
+    s_up = request.GET.get('up')
+    area = AreaModel.objects.get(area_name=s_up)
+    return render(request, 'Sadmin/areaupdate.html', {"area": area, "all": AreaModel.objects.all()})
+
+
+def update_area(request):
+    s1 = request.POST.get('s1')
+    s2 = request.POST.get('s2')
+    s3 = request.POST.get('s3')
+
+    AreaModel.objects.filter(area_no=s1).update(area_name=s2,area=s3)
+    return redirect('open_area')
+
+
+def area_delete(request):
+    c_up = request.GET.get('up')
+    area = AreaModel.objects.get(area_name=c_up).delete()
+    return redirect('open_area')

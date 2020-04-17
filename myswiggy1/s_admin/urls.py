@@ -38,4 +38,11 @@ urlpatterns = [
     path('update_city/',views.update_city,name='update_city'),
     path('city_delete/',views.city_delete,name='city_delete'),
 
+    #area
+    path('open_area/', views.open_area, name='open_area'),
+    path('save_area/', views.save_area, name='save_are'),
+    path('area_update/', views.area_update, name='area_update'),
+    path('update_area/', views.update_area, name='update_area'),
+    path('area_delete/', views.area_delete, name='area_delete'),
+
 ]

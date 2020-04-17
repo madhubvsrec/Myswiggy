@@ -1,0 +1,29 @@
+ {% include 'Sadmin/mainmenu.html' %}
+<form action="{% url 'update_area' %}" method="post">
+    {% csrf_token %}
+
+<table align="center" border="0" style="background-color: burlywood">
+    <tr>
+        <td style="background-color: burlywood;text-align: center"><input type="number" value="{{ area.area_no }}" name="s1" readonly></td>
+        <td style="background-color: burlywood;text-align: center"><input type="text" value="{{ area.area_name }}" name="s2" required></td>
+        <td style="background-color: burlywood;text-align: center"><input type="text" value="{{ area.city.city_no }}" name="s3" required></td>
+    </tr>
+    <tr><td colspan="2" style="text-align: center"><button type="submit">Update</button> </td></tr>
+</table>
+    </form>
+<table align="center" border="2">
+    <tr><td>NO</td>
+        <td>State Name</td>
+        <td>Update</td>
+        <td>Delete</td>
+    </tr>
+    {% for x in all %}
+    <tr>
+        <td>{{ x.area_no }}</td>
+        <td>{{ x.area_name }}</td>
+        <td>
+            <a href="{% url 'area_update' %}?up={{ x.area_name }}"> Update</a></td>
+        <td>
+            <a href="{% url 'area_delete' %}?up={{ x.area_name }}"> Delete</a></td>
+    </tr>
+    {% endfor %}</table>
